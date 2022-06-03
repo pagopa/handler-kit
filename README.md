@@ -49,13 +49,13 @@ const getNameFromQueryOrDefault = (default: string) => pipe(
     query("name"),
     O.getOrElse(() => default)
   )),
-)
+);
 
 // (2) combine with platform specific decoder
 const requestDecoder = pipe(
   azure.fromHttpRequest,
   RTE.map(getNameFromQueryOrDefault("world"))
-)
+);
 
 export const run: AzureFunction = pipe(
   createHandler(
