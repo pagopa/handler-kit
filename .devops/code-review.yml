@@ -17,6 +17,14 @@ trigger: none
 pool:
   vmImage: "ubuntu-latest"
 
+resources:
+  repositories:
+    - repository: pagopaCommons
+      type: github
+      name: pagopa/azure-pipeline-templates
+      ref: refs/tags/v4
+      endpoint: "pagopa"
+
 jobs:
   - job: danger
     condition: and(
@@ -27,7 +35,7 @@ jobs:
       )
       )
     steps:
-      - template: setup-project.yml
+      - template: templates/node-job-setup/template.yaml@pagopaCommons
       - bash: yarn danger ci
         env:
           DANGER_GITHUB_API_TOKEN: "$(DANGER_GITHUB_API_TOKEN)"
@@ -36,20 +44,20 @@ jobs:
     displayName: "Type check"
     continueOnError: false
     steps:
-      - template: setup-project.yml
+      - template: templates/node-job-setup/template.yaml@pagopaCommons
       - script: yarn tsc --noEmit
         displayName: "Run TypeScript compiler"
   - job: lint
     displayName: "Lint"
     continueOnError: false
     steps:
-      - template: setup-project.yml
+      - template: templates/node-job-setup/template.yaml@pagopaCommons
       - script: yarn run lint
         displayName: "Run linter"
   - job: test
     displayName: "Test"
     continueOnError: false
     steps:
-      - template: setup-project.yml
+      - template: templates/node-job-setup/template.yaml@pagopaCommons
       - script: yarn jest --ci
         displayName: "Execute tests"
