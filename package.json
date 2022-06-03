@@ -1,11 +1,11 @@
 {
   "name": "@pagopa/handler-kit",
   "version": "0.1.1",
-  "description": "",
+  "description": "A simple functional toolkit for creating handlers that are agnostic to the framework and transport protocols utilized",
   "main": "./lib/index.js",
   "typings": "./lib/index.d.ts",
   "files": [
-    "lib/*"
+    "lib"
   ],
   "scripts": {
     "test": "jest --coverage --verbose",
@@ -15,8 +15,7 @@
     "build": "tsc",
     "build:watch": "tsc -w"
   },
-  "keywords": [],
-  "author": "",
+  "author": "https://pagopa.it",
   "license": "ISC",
   "dependencies": {
     "fp-ts": "^2.12.1",
