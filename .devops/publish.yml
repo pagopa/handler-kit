@@ -8,10 +8,6 @@
 # NPM_CONNECTION    - name of the NPM service connection used to publish the package; be sure that the related user has appopriate right
 #
 
-variables:
-  NODE_VERSION: "16.13.0"
-  YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
-
 parameters:
   - name: "RELEASE_SEMVER"
     displayName: "When packing a release, define the version bump to apply"
@@ -57,15 +53,15 @@ stages:
       - job: make_release
         steps:
           - ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/main') }}:
+              - template: templates/node-job-setup/template.yaml@pagopaCommons
+                parameters:
+                  persistCredentials: true
               - template: templates/node-github-release/template.yaml@pagopaCommons
                 parameters:
                   semver: "${{ parameters.RELEASE_SEMVER }}"
                   gitEmail: $(GIT_EMAIL)
                   gitUsername: $(GIT_USERNAME)
                   gitHubConnection: $(GITHUB_CONNECTION)
-                  nodeVersion: $(NODE_VERSION)
-                  pkg_cache_version_id: $(CACHE_VERSION_ID)
-                  pkg_cache_folder: $(YARN_CACHE_FOLDER)
                   release_branch: main
 
           - ${{ if ne(variables['Build.SourceBranch'], 'refs/heads/main') }}:
@@ -89,6 +85,10 @@ stages:
               #  ex: Build.SourceBranch=refs/tags/v1.2.3-RELEASE --> v1.2.3-RELEASE
               gitReference: ${{ replace(replace(variables['Build.SourceBranch'], 'refs/tags/', ''), 'refs/heads/', '') }}
 
+          - script: |
+              yarn build
+            displayName: "Build"
+
           - task: CopyFiles@2
             inputs:
               SourceFolder: "$(System.DefaultWorkingDirectory)"
@@ -96,9 +96,8 @@ stages:
               # The list of files to be considered is determined by the "files" entry in package.json
               Contents: |
                 README.md
-                CHANGELOG.md
                 package.json
-                *.js
+                lib/**/*
             displayName: "Copy bundle files"
 
           - publish: $(System.DefaultWorkingDirectory)/bundle
