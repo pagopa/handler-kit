@@ -704,10 +704,10 @@
   dependencies:
     "@octokit/openapi-types" "^11.2.0"
 
-"@pagopa/danger-plugin@^1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@pagopa/danger-plugin/-/danger-plugin-1.2.0.tgz#be781d4e5ee32a45cee50f6caf305e168ec56bcd"
-  integrity sha512-z3WfKQxhPIUMsu4TsLENTJs+as4qkXYoGdg59WW6c1AEbnQgFTZpIAfa7KIkYCEzq7OYfhabwgA6lM6dtzMpSQ==
+"@pagopa/danger-plugin@^1.3.0":
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/@pagopa/danger-plugin/-/danger-plugin-1.3.0.tgz#51de0679da0d66febcb4d8272f24a84d5611e4c6"
+  integrity sha512-gzkUCNjwYNBsgVvgmzxgdFSBkVvBBLtF6vOIQ8eCOEUZRP8Cxru+IPp52jeZmE3jbKm5+hx5+QJKh5k7AZF/Wg==
   dependencies:
     "@pagopa/ts-commons" "^10.4.0"
     auto-changelog "^2.4.0"
