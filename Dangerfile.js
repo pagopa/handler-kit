@@ -1,4 +1,3 @@
-const { schedule } = require("danger");
 const { customRules } = require("@pagopa/danger-plugin");
 
 const recordScope = {
@@ -37,5 +36,4 @@ const recordScope = {
   },
 };
 
-// Using schedule because this is an async task
-schedule(customRules(recordScope));
+customRules(recordScope);
