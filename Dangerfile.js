@@ -1,4 +1,4 @@
-const customRules = require("@pagopa/danger-plugin");
+const customRules = require("@pagopa/danger-plugin").default;
 
 const recordScope = {
   projectToScope: {
