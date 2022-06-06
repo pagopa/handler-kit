@@ -4,7 +4,8 @@
 # variable and set it with a GitHub access token (scope public_repo); otherwise
 # set its value to 'skip' without marking it secret:
 # - DANGER_GITHUB_API_TOKEN
-#
+# - JIRA_USERNAME
+# - JIRA_PASSWORD
 
 variables:
   NODE_VERSION: "16.13.0"
@@ -39,6 +40,8 @@ jobs:
       - bash: yarn danger ci
         env:
           DANGER_GITHUB_API_TOKEN: "$(DANGER_GITHUB_API_TOKEN)"
+          JIRA_USERNAME: "$(JIRA_USERNAME)"
+          JIRA_PASSWORD: "$(JIRA_PASSWORD)"
         displayName: "Danger"
   - job: ts_type_check
     displayName: "Type check"
