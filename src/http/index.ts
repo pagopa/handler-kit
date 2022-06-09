@@ -101,4 +101,5 @@ const isHttpError = (e: Error): e is HttpError =>
     "ServiceTemporaryUnabailableError",
     "InternalServerError",
     "BadRequestError",
+    "NotFoundError",
   ].includes(e.name);
