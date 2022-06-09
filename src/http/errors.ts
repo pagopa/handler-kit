@@ -1,7 +1,7 @@
 /* eslint-disable max-classes-per-file */
 
 export class ForbiddenError extends Error {
-  public readonly name = "ForbiddenError" as const;
+  public readonly name = "ForbiddenError";
   constructor(
     public readonly detail: string,
     public readonly title = "You are not allowed here"
@@ -40,7 +40,7 @@ export const noAuthorizationGroups = () =>
   );
 
 class ConflictError extends Error {
-  public readonly name = "ConflictError" as const;
+  public readonly name = "ConflictError";
   constructor(
     public readonly detail: string,
     public readonly title = "Conflict"
@@ -52,7 +52,7 @@ class ConflictError extends Error {
 export const conflictError = (detail: string) => new ConflictError(detail);
 
 class ServiceTemporaryUnavailableError extends Error {
-  public readonly name = "ServiceTemporaryUnavailableError" as const;
+  public readonly name = "ServiceTemporaryUnavailableError";
   constructor(
     public readonly detail: string,
     public readonly title = "Service Temporary Unavailable"
