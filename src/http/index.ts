@@ -80,6 +80,7 @@ export const errorResponse = (e: Error) => {
     ForbiddenError: 403,
     ServiceTemporaryUnavailableError: 503,
     BadRequestError: 400,
+    NotFoundError: 404,
   };
   const status = statusCodes[name];
   return pipe(

@@ -76,6 +76,17 @@ export class BadRequestError extends Error {
 
 export const badRequestError = (detail: string) => new BadRequestError(detail);
 
+export class NotFoundError extends Error {
+  public readonly name = "NotFoundError";
+  constructor(
+    public readonly detail: string,
+    public readonly title = "Not Found"
+  ) {
+    super(`${title}: ${detail}`);
+  }
+}
+
+export const notFoundError = (detail: string) => new NotFoundError(detail);
 class InternalServerError extends Error {
   public readonly name = "InternalServerError";
   constructor(
@@ -94,4 +105,5 @@ export type HttpError =
   | ConflictError
   | ServiceTemporaryUnavailableError
   | InternalServerError
-  | BadRequestError;
+  | BadRequestError
+  | NotFoundError;
