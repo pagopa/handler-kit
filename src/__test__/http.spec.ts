@@ -33,7 +33,7 @@ describe("http request", () => {
         )
       ).toBe("application/xml");
     });
-    test("all param names should be treated as case insensitive", () => {
+    test("all headers names should be treated as case insensitive", () => {
       const reqWithHeader = {
         ...req,
         headers: { "x-subscription-id": "my-subscription" },

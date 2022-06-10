@@ -1,4 +1,5 @@
 import { pipe } from "fp-ts/function";
+import { toLowerCase } from "fp-ts/lib/string";
 import { lookup, upsertAt } from "fp-ts/Record";
 import * as t from "io-ts";
 import { HttpError, toInternalServerError } from "./errors";
@@ -27,7 +28,7 @@ const param =
   (type: keyof Pick<HttpRequest, "query" | "headers" | "params">) =>
   (name: string) =>
   (req: HttpRequest) =>
-    lookup(name.toLowerCase())(req[type]);
+    lookup(type === "headers" ? name.toLowerCase() : name)(req[type]);
 
 export const query = param("query");
 export const header = param("headers");
